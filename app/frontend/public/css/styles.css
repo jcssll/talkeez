@@ -617,3 +617,7 @@ p { margin: 0 0 1rem; color: var(--ink-2); }
 .footer-brand-accent {
     color: var(--yellow);
 }
+
+.tile-word {
+  text-transform: uppercase;
+}
