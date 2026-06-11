@@ -6,7 +6,7 @@ window.TALKEEZ_AAC_CATEGORIES = [
     label: 'Core Words',
     icon: 'fa-star',
     tiles: [
-      { word: 'I',     emoji: '🙋', color: 'blue' },
+      { word: 'i',     emoji: '🙋', color: 'blue' },
       { word: 'You',   emoji: '👉', color: 'blue' },
       { word: 'want',  emoji: '🙏', color: 'green' },
       { word: 'need',  emoji: '✋', color: 'green' },
