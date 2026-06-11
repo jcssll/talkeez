@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AAC — Talkeez</title>
+
+  <meta name="description" content="A free, full-screen AAC communication tool with category-based vocabulary, sentence builder, and built-in text-to-speech. No login. No paywall." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <link rel="icon" type="image/png" href="https://customer-assets.emergentagent.com/job_05240045-2f96-42ae-acf2-93c31dc80798/artifacts/7fh89fyd_new%20talkeez%20logo.png">
+</head>
+
+<body>
+  <div class="aac-shell" data-testid="aac-shell">
+
+    <div class="aac-topbar">
+      <a href="/" class="brand" data-testid="aac-brand">
+        <img src="https://customer-assets.emergentagent.com/job_05240045-2f96-42ae-acf2-93c31dc80798/artifacts/7fh89fyd_new%20talkeez%20logo.png" alt="Talkeez">
+        <span>Talk<em class="text-blue">eez</em> AAC</span>
+      </a>
+
+      <div class="aac-controls">
+        <button class="aac-btn" data-testid="aac-fullscreen" type="button">
+          <i class="fa-solid fa-expand"></i> Fullscreen
+        </button>
+
+        <a href="help.html#aac-help" class="aac-btn">
+          <i class="fa-solid fa-circle-question"></i> Help
+        </a>
+
+        <a href="/" class="aac-btn">
+          <i class="fa-solid fa-house"></i> Exit
+        </a>
+      </div>
+    </div>
+
+    <div class="aac-sentence" data-testid="aac-sentence-bar">
+      <div class="sentence-strip" data-testid="sentence-strip" aria-live="polite" aria-label="Sentence builder"></div>
+
+      <button class="aac-btn" data-testid="aac-backspace" type="button" aria-label="Remove last word">
+        <i class="fa-solid fa-delete-left"></i>
+      </button>
+
+      <button class="aac-btn danger" data-testid="aac-clear" type="button" aria-label="Clear sentence">
+        <i class="fa-solid fa-trash"></i> Clear
+      </button>
+
+      <button class="aac-btn primary" data-testid="aac-speak-sentence" type="button" aria-label="Speak sentence">
+        <i class="fa-solid fa-volume-high"></i> Speak
+      </button>
+    </div>
+
+    <div class="aac-categories" data-testid="aac-categories" role="tablist" aria-label="Vocabulary categories"></div>
+
+    <div class="aac-grid" data-testid="aac-grid" role="grid" aria-label="Vocabulary tiles"></div>
+
+  </div>
+
+  <script src="js/speech.js"></script>
+  <script src="data/aacCategories.js"></script>
+  <script src="js/aac.js"></script>
+</body>
+</html>
