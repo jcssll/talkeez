@@ -28,64 +28,16 @@
         <p class="lead">Parents, teachers, therapists, and district leaders — drop us a note. We respond personally.</p>
       </div>
 
-      <div class="grid-2 align-start">
+<div class="grid-2 align-start">
 
-        <!-- FORM CARD -->
-        <div class="card card-padded">
-          <div class="form-success" data-testid="contact-success" role="status">
-            <i class="fa-solid fa-circle-check mr-6"></i>
-            Thank you — your message has been received. We'll be in touch within 1–2 business days.
-          </div>
+  <!-- LEFT COLUMN -->
+  <div class="card card-padded contact-left">
+   <!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/subscriptions-talkeez" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+  </div>
 
-          <form data-testid="contact-form" novalidate>
-            <div class="form-grid">
-
-              <div class="field">
-                <label for="firstName">First name</label>
-                <input id="firstName" name="firstName" type="text" required data-testid="contact-firstName" autocomplete="given-name">
-              </div>
-
-              <div class="field">
-                <label for="lastName">Last name</label>
-                <input id="lastName" name="lastName" type="text" required data-testid="contact-lastName" autocomplete="family-name">
-              </div>
-
-              <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" required data-testid="contact-email" autocomplete="email">
-              </div>
-
-              <div class="field">
-                <label for="role">I am a…</label>
-                <select id="role" name="role" data-testid="contact-role">
-                  <option>Parent / Guardian</option>
-                  <option>Teacher</option>
-                  <option>Special Education Staff</option>
-                  <option>ABA Therapist</option>
-                  <option>Speech Language Pathologist</option>
-                  <option>Behavioral Specialist</option>
-                  <option>District Administrator</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <div class="field span-full">
-                <label for="organization">School, district, or organization (optional)</label>
-                <input id="organization" name="organization" type="text" data-testid="contact-org">
-              </div>
-
-              <div class="field span-full">
-                <label for="message">How can we help?</label>
-                <textarea id="message" name="message" required data-testid="contact-message"></textarea>
-              </div>
-
-            </div>
-
-            <button type="submit" class="btn btn-primary mt-32" data-testid="contact-submit">
-              <i class="fa-solid fa-paper-plane"></i> Send message
-            </button>
-          </form>
-        </div>
 
         <!-- SIDEBAR -->
         <aside>

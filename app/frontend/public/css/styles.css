@@ -335,6 +335,38 @@ p { margin: 0 0 1rem; color: var(--ink-2); }
 }
 .form-success.show { display: block; }
 
+/* Calendly container fix */
+/* .calendly-wrapper {
+  width: 100%;
+  max-width: 460px;   
+  min-height: 700px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+} */
+
+/* Limit ONLY the left column */
+/* .contact-left {
+  max-width: 520px;
+  width: 100%;
+} */
+
+/* .calendly-inline-widget {
+  width: 100% !important;
+  height: 700px !important;
+} */
+
+/* Limit the width of the left card so Calendly can't stretch */
+/* .card.card-padded {
+  max-width: 770px;    
+  width: 100%;
+}
+
+.grid-2 {
+  align-items: flex-start;
+  justify-items: flex-start;
+} */
+
 /* ---------- AAC APP ---------- */
 .aac-shell {
   min-height: 100vh; display: flex; flex-direction: column;
