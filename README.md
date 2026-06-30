@@ -88,7 +88,7 @@ We encourage accessibility, simplicity, and community‑focused design.
 ## 📬 Contact
 
 **Website:** https://talkeez.org/aac  
-**Email:** support@talkeez.org  
+**Email:** subscriptions@talkeez.org  
 **Founder:** Joshua Cassell
 
 ---
