@@ -11,13 +11,13 @@
         <span>Talk<em>eez</em></span>
       </a>
       <button class=\"nav-toggle\" data-testid=\"nav-toggle\" aria-label=\"Open menu\" aria-expanded=\"false\">
-        <i class=\"fa-solid fa-bars\"></i>
+        <span aria-hidden=\"true\">☰</span>
       </button>
       <nav class=\"nav-links\" data-testid=\"nav-links\" aria-label=\"Primary\">
         <a href=\"/index.html\">Home</a>
         <a href=\"/aac.html\">Free AAC</a>
         <a href=\"/daily-activity.html\">Daily Activity</a>
-        <a href=\"/ai-insights.html\">AI Insights</a>
+        <a href=\"/sensory-timer.html\">Timer</a><a href=\"/picture-cards.html\">Picture Cards</a>
         <a href=\"/district-solutions.html\">Districts</a>
         <a href=\"/about.html\">About</a>
         <a href=\"/help.html\">Help</a>
@@ -40,7 +40,7 @@
           <ul>
             <li><a href=\"/aac.html\">Free AAC</a></li>
             <li><a href=\"/daily-activity.html\">Daily Activity</a></li>
-            <li><a href=\"/ai-insights.html\">AI Insights</a></li>
+            <li><a href=\"/sensory-timer.html\">Sensory Timer</a></li><li><a href=\"/picture-cards.html\">Picture Cards</a></li><li><a href=\"/daily-activity-demo.html\">Daily Activity Demo</a></li><li><a href=\"/ai-insights.html\">AI Insights</a></li>
             <li><a href=\"/district-solutions.html\">District Solutions</a></li>
           </ul>
         </div>
