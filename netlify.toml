@@ -1,0 +1,17 @@
+[build]
+  base = "frontend"
+  command = "yarn build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+  YARN_VERSION = "1.22.22"
+  YARN_FLAGS = "--frozen-lockfile"
+  DISABLE_VISUAL_EDITS = "true"
+  DISABLE_EMERGENT_OVERLAY = "true"
+
+# Existing static files take precedence over the SPA fallback.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
