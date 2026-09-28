@@ -49,6 +49,16 @@ Families · educators & schools · providers & support teams · free-tool visito
 - P1: Contact page refresh in the new design system (keep Calendly destination); standalone FAQ page route if wanted; sitemap/robots; structured data
 - P2: blog/press; privacy-friendly analytics; district procurement downloads
 
+## Implemented (2026-09-28, Picture Cards rebuild)
+- [x] Rebuilt /picture-cards.html as a communication workspace — new `css/picture-cards.css` + `js/picture-cards.js`; shared nav/footer mounts preserved; old js/cards.js no longer loaded
+- [x] Four modes in a segmented switcher: Quick Speak (recent/favorites/starter swipeable rows, speak-on-tap, press animation), Choice Board (2/4/6/8 layouts, one-tap add/remove), First/Then (FIRST red + THEN green containers, arrow, slot arming, "Mark First done" with emphasis shift + spoken transition), Visual Schedule (numbered steps, drag-and-drop + up/down fallback)
+- [x] 60+ starter cards across 14 categories with color accents; search + sticky category chips + favorites + recents
+- [x] Custom card modal: label, spoken phrase, category color, photo upload (resized via canvas), premium monogram placeholder when no photo; live preview
+- [x] Utility overflow menu: print (clean @media print stylesheet), clear, export backup, restore backup — v1 backups migrate automatically, storage key preserved
+- [x] Present mode: chrome-free full-viewport board with exit button
+- [x] Talkeez tab branding restored: favicon/apple-touch-icon/theme-color on the page + layout.js brandHead() now injects them on every legacy page (aac.html already had its own)
+- [x] Verified via public URL: all 4 modes, add/remove/favorite/search, custom card creation, export download, present mode, print emulation (First/Then prints side-by-side), mobile 390px, zero console errors. Speech synthesis untestable headless (no voices) — wiring confirmed, needs one on-device listen. Marketing screenshot asset recaptured
+
 ## Implemented (2026-09-28, Sensory Clock redesign)
 - [x] Rebuilt /sensory-timer.html as "Talkeez Sensory Clock" — new `css/sensory-timer.css` + `js/sensory-timer.js`; shared nav/footer mounts (layout.js/nav.js) preserved; old js/timer.js no longer loaded
 - [x] Five switchable clock styles: Liquid Orb (signature, animated waves + glass), Breathing Ring (SVG glow), Sunset (sun descends to horizon), Falling Sand (canvas, 110 particles), Color Drain

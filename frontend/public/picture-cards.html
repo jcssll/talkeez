@@ -1,1 +1,175 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Picture Cards — Talkeez</title><meta name="description" content="Accessible tools for communication, learning, and everyday life from Talkeez."><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/css/headquarters.css"></head><body><a class="skip-link" href="#main">Skip to content</a><div data-mount="nav"></div><main id="main"><section class="container tool-page"><div class="tool-heading"><div><p class="eyebrow">TALKEEZ PICTURE CARDS</p><h1>A picture opens a possibility.</h1><p>Choose cards to build a board. Tap a board card to speak its label.</p></div><button class="btn btn-outline" id="print">Print board</button></div><div class="board-toolbar"><label>Board title<input id="board-title" maxlength="70" value="My day"></label><label>Board type<select id="board-type"><option value="choice">Choice board</option><option value="first">First / Then</option><option value="schedule">Visual schedule</option></select></label><label class="check"><input type="checkbox" id="speak" checked> Speak on tap</label></div><section class="board-sheet"><h2 id="board-heading">My day</h2><div id="board" class="picture-board"></div><p id="empty-board">Your board is ready for its first card. Choose one below.</p></section><div class="board-controls"><button class="btn btn-outline" id="clear-board">Clear board</button><button class="btn btn-outline" id="export-board">Download backup</button><label class="btn btn-outline file-button">Restore backup<input id="import-board" type="file" accept="application/json,.json"></label></div><p class="small">Saved only in this browser. Clearing browser data removes your cards. Download a backup to keep or move your board.</p><p id="card-status" role="status"></p><section class="card-library"><div><h2>Your card library</h2><label for="search">Find a card</label><input id="search" type="search" placeholder="Try snack or break"><div id="library" class="library-grid"></div></div><form id="custom-card" class="settings"><h2>Create a card</h2><label for="card-label">Card label</label><input id="card-label" maxlength="40" required placeholder="My favorite toy"><label for="card-photo">Photo (optional, up to 5 MB)</label><input id="card-photo" type="file" accept="image/png,image/jpeg,image/webp"><p class="small">Photos stay in this browser. Without a photo, your card uses a star symbol.</p><button class="btn btn-primary" type="submit">Add to library</button></form></section></section></main><div data-mount="footer"></div><script src="/js/layout.js"></script><script src="/js/nav.js"></script><script src="/js/cards.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Picture Cards — Talkeez</title>
+<meta name="description" content="Visual support, right when you need it. Build quick boards, First/Then supports, and communication choices in seconds — free from Talkeez.">
+<link rel="icon" type="image/png" href="/assets/talkeez-logo.png">
+<link rel="apple-touch-icon" href="/assets/talkeez-logo.png">
+<meta name="theme-color" content="#F7F5EF">
+<meta name="apple-mobile-web-app-title" content="Talkeez Cards">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/headquarters.css">
+<link rel="stylesheet" href="/css/picture-cards.css">
+</head>
+<body data-mode="speak">
+<a class="skip-link" href="#main">Skip to content</a>
+<div data-mount="nav"></div>
+
+<main id="main">
+  <!-- ── Hero + mode switcher ─────────────────────────── -->
+  <header class="pc-hero">
+    <p class="eyebrow">Talkeez Picture Cards</p>
+    <h1>Visual support, right when you need it.</h1>
+    <p class="pc-sub">Build quick boards, First/Then supports, and communication choices in seconds.</p>
+    <div class="pc-modeswitch" role="tablist" aria-label="Choose a mode" data-testid="pc-modeswitch">
+      <button type="button" role="tab" id="pc-tab-speak" aria-controls="pc-panel-speak" data-mode="speak" data-testid="pc-mode-speak" aria-selected="true">
+        <span aria-hidden="true">🗣️</span> Quick Speak
+      </button>
+      <button type="button" role="tab" id="pc-tab-choice" aria-controls="pc-panel-choice" data-mode="choice" data-testid="pc-mode-choice" aria-selected="false">
+        <span aria-hidden="true">🧩</span> Choice Board
+      </button>
+      <button type="button" role="tab" id="pc-tab-first" aria-controls="pc-panel-first" data-mode="first" data-testid="pc-mode-first" aria-selected="false">
+        <span aria-hidden="true">➡️</span> First / Then
+      </button>
+      <button type="button" role="tab" id="pc-tab-schedule" aria-controls="pc-panel-schedule" data-mode="schedule" data-testid="pc-mode-schedule" aria-selected="false">
+        <span aria-hidden="true">📋</span> Visual Schedule
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Workspace ────────────────────────────────────── -->
+  <section class="pc-workspace" id="pc-workspace" aria-label="Active board">
+    <div class="pc-workspace-bar">
+      <input class="pc-title" id="pc-title" maxlength="70" value="My day" aria-label="Board title" data-testid="pc-title">
+      <div class="pc-bar-actions">
+        <label class="pc-speak-toggle" data-testid="pc-speak-toggle">
+          <input type="checkbox" id="pc-speak" checked>
+          <span class="pc-switch" aria-hidden="true"></span>
+          Speak on tap
+        </label>
+        <button type="button" class="pc-btn pc-btn-soft" id="pc-present" data-testid="pc-present">Present</button>
+        <div class="pc-menu-wrap">
+          <button type="button" class="pc-btn pc-btn-soft pc-menu-btn" id="pc-menu-btn" aria-haspopup="true" aria-expanded="false" aria-label="Board actions" data-testid="pc-menu-btn">⋯</button>
+          <div class="pc-menu" id="pc-menu" role="menu" hidden>
+            <button type="button" role="menuitem" id="pc-print" data-testid="pc-print">Print board</button>
+            <button type="button" role="menuitem" id="pc-clear" data-testid="pc-clear">Clear board</button>
+            <button type="button" role="menuitem" id="pc-export" data-testid="pc-export">Download backup</button>
+            <label role="menuitem" class="pc-menu-file" data-testid="pc-restore">Restore backup<input type="file" id="pc-import" accept="application/json,.json" hidden></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="pc-status" id="pc-status" role="status" data-testid="pc-status"></p>
+
+    <!-- Mode 1 · Quick Speak -->
+    <section class="pc-panel" id="pc-panel-speak" role="tabpanel" aria-labelledby="pc-tab-speak" data-panel="speak" data-testid="pc-panel-speak">
+      <div class="pc-row-block" id="pc-recents-block" hidden>
+        <h2 class="pc-row-title">Recent</h2>
+        <div class="pc-row" id="pc-recents"></div>
+      </div>
+      <div class="pc-row-block" id="pc-favorites-block" hidden>
+        <h2 class="pc-row-title">Favorites</h2>
+        <div class="pc-row" id="pc-favorites"></div>
+      </div>
+      <div class="pc-row-block">
+        <h2 class="pc-row-title">Everyday starters</h2>
+        <div class="pc-row" id="pc-starters"></div>
+      </div>
+    </section>
+
+    <!-- Mode 2 · Choice Board -->
+    <section class="pc-panel" id="pc-panel-choice" role="tabpanel" aria-labelledby="pc-tab-choice" data-panel="choice" hidden data-testid="pc-panel-choice">
+      <div class="pc-layout-picker" role="group" aria-label="Board size" data-testid="pc-layout-picker">
+        <span>Show</span>
+        <button type="button" data-layout="2" data-testid="pc-layout-2">2</button>
+        <button type="button" data-layout="4" data-testid="pc-layout-4">4</button>
+        <button type="button" data-layout="6" data-testid="pc-layout-6">6</button>
+        <button type="button" data-layout="8" data-testid="pc-layout-8">8</button>
+        <span>cards</span>
+      </div>
+      <div class="pc-board" id="pc-board"></div>
+      <p class="pc-empty" id="pc-choice-empty">Tap cards in the library below to add choices here.</p>
+    </section>
+
+    <!-- Mode 3 · First / Then -->
+    <section class="pc-panel" id="pc-panel-first" role="tabpanel" aria-labelledby="pc-tab-first" data-panel="first" hidden data-testid="pc-panel-first">
+      <div class="pc-ft" id="pc-ft">
+        <div class="pc-ft-slot" data-slot="0" id="pc-ft-first">
+          <span class="pc-ft-tag pc-ft-tag-first">First</span>
+          <div class="pc-ft-card" id="pc-ft-card-0"></div>
+          <button type="button" class="pc-btn pc-btn-done" id="pc-done" data-testid="pc-done" disabled>Mark First done ✓</button>
+        </div>
+        <div class="pc-ft-arrow" aria-hidden="true"><span>→</span></div>
+        <div class="pc-ft-slot" data-slot="1" id="pc-ft-then">
+          <span class="pc-ft-tag pc-ft-tag-then">Then</span>
+          <div class="pc-ft-card" id="pc-ft-card-1"></div>
+        </div>
+      </div>
+      <p class="pc-empty" id="pc-first-empty">Tap a slot, then tap a card in the library to place it.</p>
+    </section>
+
+    <!-- Mode 4 · Visual Schedule -->
+    <section class="pc-panel" id="pc-panel-schedule" role="tabpanel" aria-labelledby="pc-tab-schedule" data-panel="schedule" hidden data-testid="pc-panel-schedule">
+      <ol class="pc-schedule" id="pc-schedule"></ol>
+      <p class="pc-empty" id="pc-schedule-empty">Build a step-by-step routine — tap cards in the library below to add them in order.</p>
+    </section>
+  </section>
+
+  <!-- ── Library ──────────────────────────────────────── -->
+  <section class="pc-library" aria-label="Card library">
+    <div class="pc-lib-tools" id="pc-lib-tools">
+      <div class="pc-search-wrap">
+        <input type="search" id="pc-search" placeholder="Search cards — try “snack” or “break”" aria-label="Search cards" data-testid="pc-search">
+        <button type="button" class="pc-btn pc-btn-primary" id="pc-create-open" data-testid="pc-create-open">+ New card</button>
+      </div>
+      <div class="pc-chips" id="pc-chips" role="group" aria-label="Filter by category" data-testid="pc-chips"></div>
+    </div>
+    <div class="pc-lib-grid" id="pc-lib-grid" data-testid="pc-lib-grid"></div>
+    <p class="pc-lib-empty" id="pc-lib-empty" hidden>No matching cards. Try another word — or create your own.</p>
+  </section>
+
+  <!-- ── Custom card modal ────────────────────────────── -->
+  <div class="pc-modal-wrap" id="pc-modal-wrap" hidden>
+    <div class="pc-modal-backdrop" id="pc-modal-backdrop"></div>
+    <form class="pc-modal" id="pc-create-form" role="dialog" aria-modal="true" aria-labelledby="pc-create-title" data-testid="pc-create-form">
+      <div class="pc-modal-head">
+        <h2 id="pc-create-title">Create a card</h2>
+        <button type="button" class="pc-modal-close" id="pc-create-close" aria-label="Close" data-testid="pc-create-close">✕</button>
+      </div>
+      <div class="pc-modal-body">
+        <div class="pc-create-preview" id="pc-create-preview" aria-hidden="true"></div>
+        <label class="pc-field">
+          <span>Card label</span>
+          <input type="text" id="pc-create-label" maxlength="40" required placeholder="My favorite toy" data-testid="pc-create-label">
+        </label>
+        <label class="pc-field">
+          <span>Spoken phrase <small>(optional — label is spoken if empty)</small></span>
+          <input type="text" id="pc-create-phrase" maxlength="80" placeholder="Can I have my favorite toy?" data-testid="pc-create-phrase">
+        </label>
+        <label class="pc-field">
+          <span>Category color</span>
+          <select id="pc-create-cat" data-testid="pc-create-cat"></select>
+        </label>
+        <label class="pc-field">
+          <span>Photo <small>(optional, up to 5 MB — stays in this browser)</small></span>
+          <input type="file" id="pc-create-photo" accept="image/png,image/jpeg,image/webp" data-testid="pc-create-photo">
+        </label>
+        <p class="pc-field-note">Without a photo, the card gets a clean monogram tile in its category color.</p>
+      </div>
+      <div class="pc-modal-foot">
+        <button type="submit" class="pc-btn pc-btn-primary" id="pc-create-submit" data-testid="pc-create-submit">Add to library</button>
+      </div>
+    </form>
+  </div>
+
+  <button type="button" class="pc-exit-present" id="pc-exit-present" data-testid="pc-exit-present">Exit Present</button>
+</main>
+
+<div data-mount="footer"></div>
+<script src="/js/layout.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/picture-cards.js"></script>
+</body>
+</html>
