@@ -49,5 +49,16 @@ Families · educators & schools · providers & support teams · free-tool visito
 - P1: Contact page refresh in the new design system (keep Calendly destination); standalone FAQ page route if wanted; sitemap/robots; structured data
 - P2: blog/press; privacy-friendly analytics; district procurement downloads
 
+## Implemented (2026-09-28, Sensory Clock redesign)
+- [x] Rebuilt /sensory-timer.html as "Talkeez Sensory Clock" — new `css/sensory-timer.css` + `js/sensory-timer.js`; shared nav/footer mounts (layout.js/nav.js) preserved; old js/timer.js no longer loaded
+- [x] Five switchable clock styles: Liquid Orb (signature, animated waves + glass), Breathing Ring (SVG glow), Sunset (sun descends to horizon), Falling Sand (canvas, 110 particles), Color Drain
+- [x] Eight gradient themes (Ocean, Lavender, Meadow, Sunset, Night, Cloud, Peach, Aurora) as visual cards; 14 activity presets + custom text; 9 time presets + custom 10s–180min
+- [x] Sensory Mode + Display Mode (fullscreen, chrome-free, idle control fade, subtle exit, Talkeez brand mark) — built for YouTube/smartboard recording
+- [x] Settings in glass slide-out drawer: activity, duration, clock style, theme, sound (none default; chime/bell/nature synthesized via WebAudio, never autoplayed), reduced motion, show countdown/activity, Focus Mode
+- [x] Calm completion: "All done." overlay + Restart / Choose another activity; scrolls into view; no flashing
+- [x] Accessibility: aria-live milestones only (started/halfway/one minute/complete), tabular-nums countdown, 44px+ targets, focus-visible rings, prefers-reduced-motion respected, timestamp-based accuracy (no drift, survives tab switches), localStorage persistence
+- [x] Landing section "Why visual time?" with three benefits + tools CTA
+- [x] Verified end-to-end via public URL: run/pause/resume/reset, all 5 styles, themes, drawer, sensory/display modes, completion + restart, mobile 390px, reduced-motion wiring, zero console errors; marketing screenshot asset recaptured
+
 ## Test credentials
 - None — no auth in this site. See /app/memory/test_credentials.md.
