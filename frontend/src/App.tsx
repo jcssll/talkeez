@@ -3,6 +3,9 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import Home from "@/pages/Home";
 import MyDailyActivity from "@/pages/MyDailyActivity";
+import ForFamilies from "@/pages/ForFamilies";
+import ForEducators from "@/pages/ForEducators";
+import ForProviders from "@/pages/ForProviders";
 import NotFound from "@/pages/NotFound";
 
 // Redirects that preserve the existing clean tool URLs (talkeez.org/aac etc.)
@@ -40,6 +43,9 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/my-daily-activity" element={<MyDailyActivity />} />
+      <Route path="/for-families" element={<ForFamilies />} />
+      <Route path="/for-educators" element={<ForEducators />} />
+      <Route path="/for-providers" element={<ForProviders />} />
       <Route path="/index.html" element={<StaticRedirect to="/" />} />
       <Route path="/aac" element={<StaticRedirect to="/aac.html" />} />
       <Route path="/sensory-timer" element={<StaticRedirect to="/sensory-timer.html" />} />

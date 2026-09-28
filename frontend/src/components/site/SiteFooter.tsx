@@ -21,7 +21,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-line bg-paper" data-testid="site-footer">
       <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
               <img src="/assets/talkeez-logo.png" alt="" className="h-9 w-9 object-contain" />

@@ -37,9 +37,16 @@ Families · educators & schools · providers & support teams · free-tool visito
 ## Review queue (missing business decisions — consolidated, see site.ts offerReviewQueue)
 - MDA pricing; trial terms; exact signup URL on mydailyactivity.org; HIPAA/FERPA statement accuracy; Districts final placement.
 
+## Implemented (2026-09-28, milestone 2)
+- [x] Reusable audience-page template (`components/site/AudiencePage.tsx`) driven entirely by `audiences` config in site.ts: problem-led hero, 3 concrete benefits (numbered editorial rows), product demo panel, "Trust, plainly" facts + policy links (no badges), per-audience FAQs, one primary conversion CTA
+- [x] Three audience pages: /for-families (CTA → mydailyactivity.org), /for-educators + /for-providers (CTA → Calendly demo/pilot), each with a relevant free-tool secondary action
+- [x] Main nav gained a "Who it's for" dropdown (hover + keyboard focus-within, unique testids desktop/mobile); footer gained a "Who it's for" group; nav breakpoint moved to lg
+- [x] Motion polish: Tilt component (pointer-following 3D tilt, spring-eased, reduced-motion safe) applied to hero product frames on Home, My Daily Activity, and all audience pages
+- [x] Verified: typecheck clean; all 3 audience pages desktop + mobile render with zero page errors; dropdown opens; FAQ/trust/demo sections confirmed visually
+
 ## Backlog
-- P0 (milestone 2): audience pages (For Families, For Educators & Schools, For Providers & Support Teams) from a reusable audience template; Contact/demo page refresh in new design system; FAQ page route
-- P1: real destination decision for demo form if Calendly is replaced; sitemap/robots; structured data
+- P0 (milestone 3): link audit, mobile layout pass, form destination check, accessibility basics, production build + full source export
+- P1: Contact page refresh in the new design system (keep Calendly destination); standalone FAQ page route if wanted; sitemap/robots; structured data
 - P2: blog/press; privacy-friendly analytics; district procurement downloads
 
 ## Test credentials

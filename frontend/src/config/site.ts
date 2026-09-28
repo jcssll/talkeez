@@ -79,6 +79,12 @@ export const mainNav: NavItem[] = [
   { label: "Contact", href: links.legacy.contact, testId: "nav-link-contact" },
 ];
 
+export const audienceNav: NavItem[] = [
+  { label: "For families", href: "/for-families", internal: true, testId: "nav-link-families" },
+  { label: "For educators & schools", href: "/for-educators", internal: true, testId: "nav-link-educators" },
+  { label: "For providers & support teams", href: "/for-providers", internal: true, testId: "nav-link-providers" },
+];
+
 export const footerGroups: { title: string; items: NavItem[] }[] = [
   {
     title: "Products",
@@ -90,6 +96,14 @@ export const footerGroups: { title: string; items: NavItem[] }[] = [
       { label: "Interactive demo", href: links.legacy.dailyActivityDemo, testId: "footer-link-demo" },
       { label: "AI Insights", href: links.legacy.aiInsights, testId: "footer-link-ai-insights" },
       { label: "District Solutions", href: links.legacy.districtSolutions, testId: "footer-link-districts" },
+    ],
+  },
+  {
+    title: "Who it’s for",
+    items: [
+      { label: "For families", href: "/for-families", internal: true, testId: "footer-link-families" },
+      { label: "For educators & schools", href: "/for-educators", internal: true, testId: "footer-link-educators" },
+      { label: "For providers & support teams", href: "/for-providers", internal: true, testId: "footer-link-providers" },
     ],
   },
   {
@@ -110,6 +124,189 @@ export const footerGroups: { title: string; items: NavItem[] }[] = [
       { label: "FERPA Notice", href: links.legacy.ferpa, testId: "footer-link-ferpa" },
       { label: "Accessibility", href: links.legacy.accessibility, testId: "footer-link-accessibility" },
     ],
+  },
+];
+
+// ── Trust facts (accurate, sourced from the existing site — no certifications) ─
+export const trustFacts = [
+  "Independent software company — Maryland, USA",
+  "Born from a parent’s experience, built with care",
+  "The free tools stay free — no account, no sign-up",
+  "My Daily Activity is a paid subscription, clearly separate from the free tools",
+] as const;
+
+// ── Audience pages (reusable template — see components/site/AudiencePage.tsx) ─
+export interface AudienceConfig {
+  slug: string;
+  name: string;
+  metaTitle: string;
+  metaDescription: string;
+  eyebrow: string;
+  headlinePre: string;
+  headlineAccent: string;
+  headlinePost: string;
+  lead: string;
+  primaryCta: { label: string; href: string; external?: boolean };
+  secondaryCta: { label: string; href: string };
+  benefits: { n: string; title: string; text: string }[];
+  demo: { title: string; text: string; img: string; imgAlt: string; caption: string; ctaLabel: string; ctaHref: string };
+  faqs: FaqEntry[];
+  band: { title: string; body: string; secondary: { label: string; href: string; external?: boolean } };
+}
+
+export const audiences: AudienceConfig[] = [
+  {
+    slug: "families",
+    name: "For families",
+    metaTitle: "For families — Talkeez · A clearer picture of your child’s day",
+    metaDescription:
+      "My Daily Activity, by Talkeez, gives families one calm place to document care, behavior, learning, and progress — for everyone who shares a child’s day.",
+    eyebrow: "For families",
+    headlinePre: "One clear picture of",
+    headlineAccent: "your child’s day,",
+    headlinePost: "for everyone who shares it.",
+    lead: "Between home, school, therapy, and grandparents, the details of a child’s day end up scattered across texts, notebooks, and memory. My Daily Activity, by Talkeez, gives your family one calm place to document care, behavior, learning, and progress — together.",
+    primaryCta: { label: "Explore My Daily Activity", href: links.myDailyActivity, external: true },
+    secondaryCta: { label: "Open the free AAC", href: links.tools.aac },
+    benefits: [
+      { n: "01", title: "Log the day as it happens", text: "Care tasks, behavior notes, and learning moments — recorded in the moment, not reconstructed at night." },
+      { n: "02", title: "Share one calm summary", text: "A clear end-of-day picture for everyone who helps — instead of a flood of texts and secondhand updates." },
+      { n: "03", title: "Bring a real record to meetings", text: "Notes and progress you can revisit before appointments, planning conversations, and school meetings." },
+    ],
+    demo: {
+      title: "See the family view.",
+      text: "The interactive demo runs entirely on sample data. Check off activities, add a note, and watch the family summary update — just like a real day.",
+      img: "/assets/screenshots/daily-activity-demo.png",
+      imgAlt: "The My Daily Activity interactive demo showing the family view with sample data",
+      caption: "Interactive demo · family view · sample data",
+      ctaLabel: "Try the interactive demo",
+      ctaHref: links.legacy.dailyActivityDemo,
+    },
+    faqs: [
+      {
+        q: "Is My Daily Activity free for families?",
+        a: "No. It’s a paid subscription application. The Talkeez tools — the AAC board, Sensory Timer, and Picture Cards — stay free, with no account and no sign-up.",
+      },
+      {
+        q: "Can we see it before subscribing?",
+        a: "Yes. The interactive demo on this site runs with sample data, so you can explore the daily routine, activity notes, and the family summary view first. Signup happens at mydailyactivity.org.",
+      },
+      {
+        q: "Do the free tools sync with My Daily Activity?",
+        a: "No. They’re separate products, and nothing syncs between them automatically. The free tools stand on their own; My Daily Activity is there when you need a documented record.",
+      },
+      {
+        q: "Who is it built for?",
+        a: "Families first — and the people around them. My Daily Activity is designed for families, educators, caregivers, and support teams who all share part of a child’s day.",
+      },
+    ],
+    band: {
+      title: "A clearer picture of your child’s day starts here.",
+      body: "Explore the paid application for documenting care, behavior, learning, and progress — or try the demo with sample data first.",
+      secondary: { label: "Try the interactive demo", href: links.legacy.dailyActivityDemo },
+    },
+  },
+  {
+    slug: "educators",
+    name: "For educators & schools",
+    metaTitle: "For educators & schools — Talkeez · My Daily Activity demos and pilots",
+    metaDescription:
+      "My Daily Activity, by Talkeez, gives classrooms one calm workflow for documenting care, behavior, learning, and progress. Book a demo or pilot for your school.",
+    eyebrow: "For educators & schools",
+    headlinePre: "Less time documenting the day.",
+    headlineAccent: "More time",
+    headlinePost: "teaching it.",
+    lead: "Paper logs, group texts, and scattered spreadsheets eat the hours around actual teaching. My Daily Activity, by Talkeez, gives your classroom one calm workflow for care, behavior, learning, and progress — and a clear summary for families at the end of it.",
+    primaryCta: { label: "Book a demo or pilot", href: links.demoBooking, external: true },
+    secondaryCta: { label: "Start a free sensory timer", href: links.tools.sensoryTimer },
+    benefits: [
+      { n: "01", title: "Document without disrupting class", text: "Quick, structured entries for care, behavior, and learning — designed to fit the flow of the room, not fight it." },
+      { n: "02", title: "Send one clear summary home", text: "Day-end summaries for families replace handwritten notebooks and end-of-day message threads." },
+      { n: "03", title: "Keep everyone in the room aligned", text: "Teachers, aides, and specialists contribute to the same record of the day — one picture, not five versions." },
+    ],
+    demo: {
+      title: "Explore a sample classroom.",
+      text: "The interactive demo runs entirely on sample data — a classroom day with routines, activity notes, and the family summary it produces.",
+      img: "/assets/screenshots/daily-activity-demo.png",
+      imgAlt: "The My Daily Activity interactive demo showing a sample classroom day",
+      caption: "Interactive demo · sample classroom",
+      ctaLabel: "Try the interactive demo",
+      ctaHref: links.legacy.dailyActivityDemo,
+    },
+    faqs: [
+      {
+        q: "How do we arrange a demo or pilot?",
+        a: "Book a time directly with the Talkeez team through our demo booking page. We’ll walk your team through My Daily Activity and discuss what a pilot looks like for your setting.",
+      },
+      {
+        q: "Is there pricing for schools?",
+        a: "We don’t list school pricing on this site. Mention your setting when you book a demo, and the team will follow up with details.",
+      },
+      {
+        q: "What about FERPA?",
+        a: "We publish a FERPA notice alongside our other policies — you’ll find it linked below. District teams can also start with our district solutions page or contact us directly.",
+      },
+      {
+        q: "Can we use the free tools in class?",
+        a: "Yes. The Sensory Timer, Picture Cards, and AAC board are free for classroom use — no account, no sign-up. They’re separate from My Daily Activity, and nothing syncs between them automatically.",
+      },
+    ],
+    band: {
+      title: "Bring a calmer workflow to your classroom.",
+      body: "Book a demo or pilot with the Talkeez team — or explore the application on your own first.",
+      secondary: { label: "Explore My Daily Activity", href: links.myDailyActivity, external: true },
+    },
+  },
+  {
+    slug: "providers",
+    name: "For providers & support teams",
+    metaTitle: "For providers & support teams — Talkeez · One shared record of the day",
+    metaDescription:
+      "My Daily Activity, by Talkeez, keeps care, behavior, learning, and progress in one shared place for caregivers, therapists, and support teams. Book a demo or pilot.",
+    eyebrow: "For providers & support teams",
+    headlinePre: "Care that spans shifts",
+    headlineAccent: "deserves a record",
+    headlinePost: "that keeps up.",
+    lead: "Caregivers, therapists, and support staff each hold part of the day — and handoffs are where the details get lost. My Daily Activity, by Talkeez, keeps care, behavior, learning, and progress in one shared place, so every handoff starts informed.",
+    primaryCta: { label: "Book a demo or pilot", href: links.demoBooking, external: true },
+    secondaryCta: { label: "Create a free picture board", href: links.tools.pictureCards },
+    benefits: [
+      { n: "01", title: "Quick entries during care", text: "Log what matters in the moment, from the room you’re in — care tasks, behavior notes, and progress as they happen." },
+      { n: "02", title: "Handoffs without gaps", text: "The next person on sees the same picture you left — no re-telling, no lost details between shifts and settings." },
+      { n: "03", title: "Families stay in the loop", text: "One calm daily summary keeps families informed without scattered updates from every direction." },
+    ],
+    demo: {
+      title: "Walk through a day of care.",
+      text: "The interactive demo runs entirely on sample data — routines, activity notes, and the summary families see at the end of the day.",
+      img: "/assets/screenshots/daily-activity-demo.png",
+      imgAlt: "The My Daily Activity interactive demo showing a sample day of care",
+      caption: "Interactive demo · sample data",
+      ctaLabel: "Try the interactive demo",
+      ctaHref: links.legacy.dailyActivityDemo,
+    },
+    faqs: [
+      {
+        q: "How do we arrange a demo or pilot?",
+        a: "Book a time directly with the Talkeez team through our demo booking page. We’ll walk your team through My Daily Activity and discuss a pilot for your setting.",
+      },
+      {
+        q: "Does it work across shifts and settings?",
+        a: "That’s what it’s built for: one shared record of care, behavior, learning, and progress that the whole support team works from across the day.",
+      },
+      {
+        q: "Do the free Talkeez tools sync with it?",
+        a: "No. The AAC board, Sensory Timer, and Picture Cards are separate, free products — nothing syncs automatically. They stay free whether or not you use My Daily Activity.",
+      },
+      {
+        q: "Where can we see pricing?",
+        a: "Plan and signup details live at mydailyactivity.org. For team and organizational arrangements, book a demo and we’ll follow up with details.",
+      },
+    ],
+    band: {
+      title: "Give every handoff the full picture.",
+      body: "Book a demo or pilot with the Talkeez team — or explore the application on your own first.",
+      secondary: { label: "Explore My Daily Activity", href: links.myDailyActivity, external: true },
+    },
   },
 ];
 

@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { Tilt } from "@/components/site/Tilt";
 import { Reveal } from "@/components/site/Reveal";
 import { Faq } from "@/components/site/Faq";
 import { CtaBand } from "@/components/site/CtaBand";
@@ -71,7 +72,8 @@ export default function MyDailyActivity() {
               className="pointer-events-none absolute -top-10 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-bubble-yellow/40 blur-3xl"
               aria-hidden="true"
             />
-            <figure className="relative rotate-1 rounded-3xl border border-line bg-paper p-2.5 shadow-[0_32px_70px_-16px_rgba(15,27,61,0.28)]">
+            <Tilt className="relative rotate-1">
+            <figure className="rounded-3xl border border-line bg-paper p-2.5 shadow-[0_32px_70px_-16px_rgba(15,27,61,0.28)]">
               <img
                 src={mdaCopy.demoImg}
                 alt={mdaCopy.demoImgAlt}
@@ -81,6 +83,7 @@ export default function MyDailyActivity() {
                 Interactive demo <span className="text-bubble-blue">Sample data</span>
               </figcaption>
             </figure>
+            </Tilt>
           </Reveal>
         </div>
       </section>

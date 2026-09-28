@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { ArrowDown, ArrowUpRight, Check } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { Tilt } from "@/components/site/Tilt";
 import { Reveal } from "@/components/site/Reveal";
 import { Marquee } from "@/components/site/Marquee";
 import { Faq } from "@/components/site/Faq";
@@ -39,9 +40,10 @@ function HeroVisual() {
         className="pointer-events-none absolute -top-12 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-bubble-yellow/40 blur-3xl"
         aria-hidden="true"
       />
+      <Tilt className="relative z-10 -rotate-2">
       <motion.figure
         style={{ y: reduce ? 0 : yMain }}
-        className="relative z-10 -rotate-2 rounded-3xl border border-line bg-paper p-2.5 shadow-[0_32px_70px_-16px_rgba(15,27,61,0.28)]"
+        className="rounded-3xl border border-line bg-paper p-2.5 shadow-[0_32px_70px_-16px_rgba(15,27,61,0.28)]"
       >
         <div className={reduce ? undefined : "animate-float"}>
           <img
@@ -54,6 +56,7 @@ function HeroVisual() {
           </figcaption>
         </div>
       </motion.figure>
+      </Tilt>
       <motion.figure
         style={{ y: reduce ? 0 : yFast }}
         className="absolute -bottom-10 -left-4 z-20 w-44 rotate-3 rounded-2xl border border-line bg-paper p-2 shadow-[0_20px_45px_-12px_rgba(15,27,61,0.3)] sm:w-52 md:-left-10"
