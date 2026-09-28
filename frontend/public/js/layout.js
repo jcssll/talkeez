@@ -80,9 +80,34 @@
     if (y) y.textContent = new Date().getFullYear();
   }
 
+  // Ensure Talkeez tab branding on every legacy page (favicon, touch icon, theme color).
+  function brandHead() {
+    const head = document.head;
+    if (!head.querySelector('link[rel=\"icon\"]')) {
+      const icon = document.createElement('link');
+      icon.rel = 'icon';
+      icon.type = 'image/png';
+      icon.href = '/assets/talkeez-logo.png';
+      head.appendChild(icon);
+    }
+    if (!head.querySelector('link[rel=\"apple-touch-icon\"]')) {
+      const touch = document.createElement('link');
+      touch.rel = 'apple-touch-icon';
+      touch.href = '/assets/talkeez-logo.png';
+      head.appendChild(touch);
+    }
+    if (!head.querySelector('meta[name=\"theme-color\"]')) {
+      const theme = document.createElement('meta');
+      theme.name = 'theme-color';
+      theme.content = '#F7F5EF';
+      head.appendChild(theme);
+    }
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', mount);
+    document.addEventListener('DOMContentLoaded', () => { brandHead(); mount(); });
   } else {
+    brandHead();
     mount();
   }
 })();
