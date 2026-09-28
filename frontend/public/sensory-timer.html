@@ -1,1 +1,220 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sensory Timer — Talkeez</title><meta name="description" content="Accessible tools for communication, learning, and everyday life from Talkeez."><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" href="/css/headquarters.css"></head><body><a class="skip-link" href="#main">Skip to content</a><div data-mount="nav"></div><main id="main"><section class="container tool-page"><div class="tool-heading"><div><p class="eyebrow">TALKEEZ SENSORY TIMER</p><h1>Time, at your pace.</h1><p>A gentle visual countdown for the next part of your day.</p></div><button class="btn btn-outline" id="fullscreen">Classroom fullscreen</button></div><div class="timer-layout"><section class="timer-stage" id="timer-stage"><p id="activity-display">Quiet break</p><div class="timer-ring" id="ring"><div><output id="countdown" aria-label="Time remaining">05:00</output><p id="timer-state" role="status">Ready when you are</p></div></div><div class="timer-actions"><button class="btn btn-primary" id="start">Start timer</button><button class="btn btn-outline" id="reset">Reset</button></div></section><aside class="settings"><h2>Make it yours</h2><label for="activity">Activity name</label><input id="activity" maxlength="60" value="Quiet break"><label for="minutes">Duration (minutes)</label><input id="minutes" type="number" min="0.1" max="180" step="0.1" value="5"><div class="preset-row"><button data-minutes="1">1 min</button><button data-minutes="5">5 min</button><button data-minutes="10">10 min</button><button data-minutes="15">15 min</button></div><label for="theme">Color theme</label><select id="theme"><option value="mint">Meadow</option><option value="lavender">Lavender</option><option value="peach">Sunset</option></select><label class="check"><input type="checkbox" id="sound"> Gentle chime at the end</label><label class="check"><input type="checkbox" id="motion"> Smooth countdown motion</label><p class="small">Sound and motion are off to start. Keep this page open while the timer runs.</p><p id="timer-error" role="alert"></p></aside></div></section></main><div data-mount="footer"></div><script src="/js/layout.js"></script><script src="/js/nav.js"></script><script src="/js/timer.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Talkeez Sensory Clock — Time you can see</title>
+<meta name="description" content="A calm visual countdown designed to make transitions easier to understand. Free sensory timer from Talkeez — no account, no sign-up.">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/headquarters.css">
+<link rel="stylesheet" href="/css/sensory-timer.css">
+</head>
+<body data-theme="ocean" data-clock="orb">
+<a class="skip-link" href="#main">Skip to content</a>
+<div data-mount="nav"></div>
+
+<main id="main">
+  <!-- ══════════ SENSORY CLOCK STAGE ══════════ -->
+  <section class="st-stage" id="st-stage" aria-label="Sensory clock">
+    <div class="st-ambient" aria-hidden="true">
+      <span class="st-blob st-blob-a"></span>
+      <span class="st-blob st-blob-b"></span>
+      <span class="st-blob st-blob-c"></span>
+    </div>
+
+    <div class="st-topbar">
+      <p class="st-kicker">Talkeez Sensory Clock</p>
+      <h1 class="st-activity" id="st-activity-label">Quiet Break</h1>
+    </div>
+
+    <div class="st-clock" id="st-clock">
+      <!-- Clock style 1 — Liquid Orb -->
+      <div class="st-clock-face" data-face="orb">
+        <div class="st-orb" id="st-orb">
+          <div class="st-orb-liquid" id="st-orb-liquid">
+            <svg class="st-orb-wave st-orb-wave-1" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 32 Q150 12 300 32 T600 32 T900 32 T1200 32 V60 H0 Z"></path>
+            </svg>
+            <svg class="st-orb-wave st-orb-wave-2" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 30 Q200 48 400 30 T800 30 T1200 30 V60 H0 Z"></path>
+            </svg>
+          </div>
+          <div class="st-orb-shine" aria-hidden="true"></div>
+          <div class="st-face-center">
+            <output class="st-time" data-time aria-label="Time remaining">05:00</output>
+            <p class="st-face-sub">Time remaining</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clock style 2 — Breathing Ring -->
+      <div class="st-clock-face" data-face="ring">
+        <div class="st-ring-wrap">
+          <svg class="st-ring-svg" viewBox="0 0 320 320" aria-hidden="true">
+            <circle class="st-ring-track" cx="160" cy="160" r="150"></circle>
+            <circle class="st-ring-prog" id="st-ring-prog" cx="160" cy="160" r="150"></circle>
+          </svg>
+          <div class="st-face-center">
+            <p class="st-face-activity" data-activity>Quiet Break</p>
+            <output class="st-time" data-time aria-label="Time remaining">05:00</output>
+            <p class="st-face-sub">Time remaining</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clock style 3 — Sunset -->
+      <div class="st-clock-face" data-face="sunset">
+        <div class="st-sunset-scene" id="st-sunset-scene">
+          <div class="st-sky-dim" id="st-sky-dim" aria-hidden="true"></div>
+          <div class="st-sun" id="st-sun" aria-hidden="true"></div>
+          <div class="st-horizon" aria-hidden="true"></div>
+          <div class="st-face-center">
+            <output class="st-time" data-time aria-label="Time remaining">05:00</output>
+            <p class="st-face-sub">Time remaining</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clock style 4 — Falling Sand -->
+      <div class="st-clock-face" data-face="sand">
+        <div class="st-sand-box">
+          <canvas class="st-sand" id="st-sand" aria-hidden="true"></canvas>
+          <div class="st-face-center">
+            <output class="st-time" data-time aria-label="Time remaining">05:00</output>
+            <p class="st-face-sub">Time remaining</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clock style 5 — Color Drain -->
+      <div class="st-clock-face" data-face="drain">
+        <div class="st-drain-shape">
+          <div class="st-drain-fill" id="st-drain-fill" aria-hidden="true"></div>
+          <div class="st-face-center">
+            <output class="st-time" data-time aria-label="Time remaining">05:00</output>
+            <p class="st-face-sub">Time remaining</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="st-state" id="st-state">Ready when you are</p>
+
+    <div class="st-controls">
+      <button type="button" class="st-btn st-btn-primary" id="st-start" data-testid="st-start">Start</button>
+      <button type="button" class="st-btn st-btn-ghost" id="st-reset" data-testid="st-reset">Reset</button>
+    </div>
+
+    <div class="st-presets" id="st-presets" role="group" aria-label="Activity presets" data-testid="st-activity-presets"></div>
+
+    <div class="st-modes">
+      <button type="button" class="st-btn st-btn-soft" id="st-sensory-btn" data-testid="st-sensory-mode-btn">Enter Sensory Mode</button>
+      <button type="button" class="st-btn st-btn-soft" id="st-display-btn" data-testid="st-display-mode-btn">Display Mode</button>
+      <button type="button" class="st-icon-btn" id="st-settings-open" aria-label="Open settings" aria-haspopup="dialog" data-testid="st-settings-open">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.2"></circle>
+          <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.89a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H9a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V9c.63.28 1.09.88 1.17 1.56H21a2 2 0 1 1 0 4h-.09c-.5.08-1.13.63-1.51 1.03Z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <button type="button" class="st-exit" id="st-exit-mode" data-testid="st-exit-mode">Exit</button>
+    <p class="st-brand-mark" aria-hidden="true">Talkeez · Sensory Clock</p>
+
+    <!-- Completion state -->
+    <div class="st-complete" id="st-complete" role="status" hidden data-testid="st-complete">
+      <p class="st-complete-title">All done.</p>
+      <p class="st-complete-sub">Great job. You’re ready for what’s next.</p>
+      <div class="st-complete-actions">
+        <button type="button" class="st-btn st-btn-primary" id="st-restart" data-testid="st-restart">Restart</button>
+        <button type="button" class="st-btn st-btn-ghost" id="st-choose" data-testid="st-choose">Choose another activity</button>
+      </div>
+    </div>
+
+    <p class="visually-hidden" id="st-live" aria-live="polite"></p>
+  </section>
+
+  <!-- ══════════ SETTINGS DRAWER ══════════ -->
+  <div class="st-drawer-wrap" id="st-drawer-wrap" hidden>
+    <div class="st-drawer-backdrop" id="st-drawer-backdrop"></div>
+    <aside class="st-drawer" id="st-drawer" role="dialog" aria-modal="true" aria-labelledby="st-drawer-title" data-testid="st-drawer">
+      <div class="st-drawer-head">
+        <h2 id="st-drawer-title">Make it yours</h2>
+        <button type="button" class="st-icon-btn" id="st-settings-close" aria-label="Close settings" data-testid="st-settings-close">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </button>
+      </div>
+
+      <div class="st-field">
+        <label for="st-activity-input">Activity</label>
+        <input id="st-activity-input" type="text" maxlength="60" value="Quiet Break" autocomplete="off" data-testid="st-activity-input">
+      </div>
+
+      <div class="st-field">
+        <span class="st-field-label" id="st-time-label">Duration</span>
+        <div class="st-time-grid" id="st-time-grid" role="group" aria-labelledby="st-time-label" data-testid="st-time-presets"></div>
+        <label class="st-custom-label" for="st-custom-minutes">Custom (minutes, 10 seconds – 180 minutes)</label>
+        <input id="st-custom-minutes" type="number" min="0.17" max="180" step="0.1" value="5" inputmode="decimal" data-testid="st-custom-minutes">
+        <p class="st-error" id="st-duration-error" role="alert"></p>
+      </div>
+
+      <div class="st-field">
+        <span class="st-field-label" id="st-clock-label">Clock style</span>
+        <div class="st-card-grid" id="st-clock-grid" role="group" aria-labelledby="st-clock-label" data-testid="st-clock-styles"></div>
+      </div>
+
+      <div class="st-field">
+        <span class="st-field-label" id="st-theme-label">Theme</span>
+        <div class="st-card-grid st-theme-grid" id="st-theme-grid" role="group" aria-labelledby="st-theme-label" data-testid="st-theme-cards"></div>
+      </div>
+
+      <div class="st-field">
+        <span class="st-field-label" id="st-sound-label">Sound at the end</span>
+        <div class="st-sound-list" id="st-sound-list" role="radiogroup" aria-labelledby="st-sound-label" data-testid="st-sound-options">
+          <label class="st-radio"><input type="radio" name="st-sound" value="none" checked data-testid="st-sound-none"> No Sound</label>
+          <label class="st-radio"><input type="radio" name="st-sound" value="chime" data-testid="st-sound-chime"> Gentle Chime</label>
+          <label class="st-radio"><input type="radio" name="st-sound" value="bell" data-testid="st-sound-bell"> Soft Bell</label>
+          <label class="st-radio"><input type="radio" name="st-sound" value="nature" data-testid="st-sound-nature"> Nature Tone</label>
+        </div>
+      </div>
+
+      <div class="st-field st-toggles">
+        <label class="st-toggle"><input type="checkbox" id="st-reduced-motion" data-testid="st-reduced-motion"> <span>Reduced Motion <small>Stops decorative animation; the timer still works.</small></span></label>
+        <label class="st-toggle"><input type="checkbox" id="st-show-countdown" checked data-testid="st-show-countdown"> <span>Show numerical countdown</span></label>
+        <label class="st-toggle"><input type="checkbox" id="st-show-activity" checked data-testid="st-show-activity"> <span>Show activity name</span></label>
+        <label class="st-toggle"><input type="checkbox" id="st-focus-mode" data-testid="st-focus-mode"> <span>Focus Mode <small>Simplifies the page even further.</small></span></label>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ══════════ LANDING SECTION ══════════ -->
+  <section class="st-why" aria-labelledby="st-why-title">
+    <div class="container">
+      <p class="st-kicker st-kicker-light">Time you can see.</p>
+      <h2 id="st-why-title">Why visual time?</h2>
+      <p class="lead">Time can feel abstract. Visual timers turn minutes into something you can see, helping make transitions, routines, breaks, and focused activities easier to understand.</p>
+      <div class="st-why-grid">
+        <div class="st-why-item">
+          <h3>See time differently</h3>
+          <p>A visual representation makes remaining time easier to understand.</p>
+        </div>
+        <div class="st-why-item">
+          <h3>Make transitions gentler</h3>
+          <p>Use the timer before changing activities or environments.</p>
+        </div>
+        <div class="st-why-item">
+          <h3>Create predictable routines</h3>
+          <p>Use the same visual cues for home, school, therapy, and everyday activities.</p>
+        </div>
+      </div>
+      <a class="st-why-cta" href="/#free-tools" data-testid="st-explore-tools">Explore more free communication and learning tools.</a>
+    </div>
+  </section>
+</main>
+
+<div data-mount="footer"></div>
+<script src="/js/layout.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/sensory-timer.js"></script>
+</body>
+</html>
